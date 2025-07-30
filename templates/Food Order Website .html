@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bambus Bistro - Online Bestellung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        button {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 6px 6px;
+    margin-right: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #ddd;
+}
+        .menu-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-category {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .item-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .item-price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #5a6fd8;
+            transform: scale(1.1);
+        }
+
+        .quantity-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .cart {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            min-width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .cart-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #e74c3c;
+            text-align: center;
+            margin: 15px 0;
+            padding-top: 15px;
+            border-top: 2px solid #667eea;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .payment-info {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #f39c12;
+        }
+
+        .payment-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .order-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-order {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .customization-options {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .customization-title {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .option-group {
+            margin-bottom: 12px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .extra-meat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .extra-meat-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .extra-meat-btn {
+            width: 25px;
+            height: 25px;
+            border: none;
+            border-radius: 50%;
+            background: #fd7e14;
+            color: white;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .extra-meat-btn:hover {
+            background: #e8630d;
+            transform: scale(1.1);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .cart {
+                position: relative;
+                right: auto;
+                top: auto;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // EmailJS initialisieren
+    emailjs.init("-WNsubuk3dCoOze70"); // Ersetzen Sie mit Ihrem Public Key
+    
+    function checkout() {
+        if (cart.length === 0) {
+            alert('Ihr Warenkorb ist leer!');
+            return;
+        }
+        
+        // Bestelldetails formatieren
+        let orderDetails = '';
+        cart.forEach(item => {
+            orderDetails += `${item.name} × ${item.quantity} = ${(item.price * item.quantity).toFixed(2)} €\n`;
+        });
+        
+        // E-Mail Parameter
+        const templateParams = {
+            order_details: orderDetails,
+            total_amount: total.toFixed(2),
+            order_time: new Date().toLocaleString('de-DE'),
+            restaurant_name: 'Bambus Bistro'
+        };
+        
+        // E-Mail senden
+        emailjs.send('service_p5zcaqp', 'template_ekfcx1c', templateParams)
+            .then(function(response) {
+                alert('Bestellung erfolgreich gesendet! Sie erhalten in Kürze eine Bestätigung.');
+                cart = [];
+                updateCartDisplay();
+            }, function(error) {
+                alert('Fehler beim Senden der Bestellung. Bitte versuchen Sie es erneut.');
+                console.error('EmailJS Error:', error);
+            });
+    }
+</script>
+<body>
+    <div class="container">
+        <header>
+            <h1>🥙 Istanbul Döner</h1>
+            <p class="subtitle">Frische Döner-Spezialitäten - Online bestellen</p>
+            <div class="payment-info">
+                <div class="payment-icon">💰</div>
+                <strong>Zahlung nur in bar bei Lieferung oder Abholung</strong>
+            </div>
+        </header>
+
+        <div class="cart" id="cart">
+            <h3 class="cart-title">🛒 Warenkorb</h3>
+            <div id="cart-items">
+                <p class="empty-cart">Ihr Warenkorb ist leer</p>
+            </div>
+            <div class="cart-total" id="cart-total" style="display: none;">
+                Gesamt: €0.00
+            </div>
+            <button class="checkout-btn" id="checkout-btn" onclick="showOrderForm()" style="display: none;">
+                Jetzt bestellen
+            </button>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-category">
+                <h2 class="category-title">🥙 Döner</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Döner im Fladenbrot</div>
+                        <div class="item-description">Frisches Hähnchen- oder Lammfleisch, Salat, Tomaten, Zwiebeln, Gurken</div>
+                        <div class="item-price">€5.50</div>
+                            <div class="customization-options">
+                            <div class="customization-title">🚫 Ohne...</div>                        
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-herb-1">
+                                    <label for="remove-herb-1">Kräutersoße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-spicy-1">
+                                    <label for="'remove-spicy'-1">Scharfe Soße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-garlic-1">
+                                    <label for=", 'remove-garlic-1">Knoblauchsoße</label>
+                                </div>                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-salad-1">
+                                    <label for="remove-salad-1">Mischsalat</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-cucumber-1">
+                                    <label for="remove-cucumber-1">Gurken</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-tomato-1">
+                                    <label for="remove-tomato-1">Tomate</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-onion-1">
+                                    <label for="remove-onion-1">Zwiebel</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-meat-1">
+                                    <label for="remove-meat-1">Fleisch</label>
+                                </div>
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+                        
+                            <div class="extra-meat">
+                                <span>🥩 Extra Fleisch (+€0.50):</span>
+                                <div class="extra-meat-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                    <span class="extra-meat-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Döner im Fladenbrot', 5.50, this)">In den Warenkorb</button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Döner Teller</div>
+                        <div class="item-description">Döner mit Reis oder Pommes, Salat und Soßen</div>
+                        <div class="item-price">€8.50</div>
+                        
+                        <div class="customization-options">
+                            <div class="customization-title">🚫 Ohne...</div>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-herb-2">
+                                    <label for="remove-herb-2">Kräutersoße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-spicy-2">
+                                    <label for="'remove-spicy'-2">Scharfe Soße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-garlic-2">
+                                    <label for=", 'remove-garlic-2">Knoblauchsoße</label>
+                                </div>                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-salad-2">
+                                    <label for="remove-salad-2">Mischsalat</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-cucumber-2">
+                                    <label for="remove-cucumber-2">Gurken</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-tomato-2">
+                                    <label for="remove-tomato-2">Tomate</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-onion-2">
+                                    <label for="remove-onion-2">Zwiebel</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-meat-2">
+                                    <label for="remove-meat-2">Fleisch</label>
+                                </div>
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+                            <div class="extra-meat">
+                                <span>🥩 Extra Fleisch (+€0.50):</span>
+                                <div class="extra-meat-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                    <span class="extra-meat-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Döner Teller', 8.50, this)">In den Warenkorb</button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Döner Box</div>
+                        <div class="item-description">Döner mit Pommes in der praktischen Box</div>
+                        <div class="item-price">€7.00</div>
+                        <div class="customization-options">
+                            <div class="customization-title">🚫 Ohne...</div>                        
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-herb-3">
+                                    <label for="remove-herb-3">Kräutersoße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-spicy-3">
+                                    <label for="'remove-spicy'-3">Scharfe Soße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-garlic-3">
+                                    <label for=", 'remove-garlic-3">Knoblauchsoße</label>
+                                </div>                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-salad-3">
+                                    <label for="remove-salad-3">Mischsalat</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-cucumber-3">
+                                    <label for="remove-cucumber-3">Gurken</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-tomato-3">
+                                    <label for="remove-tomato-3">Tomate</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-onion-3">
+                                    <label for="remove-onion-3">Zwiebel</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-meat-3">
+                                    <label for="remove-meat-3">Fleisch</label>
+                                </div>
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+                            <div class="extra-meat">
+                                <span>🥩 Extra Fleisch (+€0.50):</span>
+                                <div class="extra-meat-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                    <span class="extra-meat-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Döner Box', 7.00, this)">In den Warenkorb</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h2 class="category-title">🌯 Dürüm</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Dürüm Hähnchen</div>
+                        <div class="item-description">Döner im dünnen Fladenbrot gerollt mit Hähnchenfleisch</div>
+                        <div class="item-price">€6.00</div>
+                        <div class="customization-options">
+                            <div class="customization-title">🚫 Ohne...</div>                        
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-herb-4">
+                                    <label for="remove-herb-4">Kräutersoße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-spicy-4">
+                                    <label for="'remove-spicy'-4">Scharfe Soße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-garlic-4">
+                                    <label for=", 'remove-garlic-4">Knoblauchsoße</label>
+                                </div>                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-salad-4">
+                                    <label for="remove-salad-4">Mischsalat</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-cucumber-4">
+                                    <label for="remove-cucumber-4">Gurken</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-tomato-4">
+                                    <label for="remove-tomato-4">Tomate</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-onion-4">
+                                    <label for="remove-onion-4">Zwiebel</label>
+                                </div>
+                                <div class="checkbox-item"> 
+                                    <input type="checkbox" id="remove-meat-4">
+                                    <label for="remove-meat-4">Fleisch</label>
+                                </div>
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+                            <div class="extra-meat">
+                                <span>🥩 Extra Fleisch (+€0.50):</span>
+                                <div class="extra-meat-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                    <span class="extra-meat-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Dürüm Hähnchen', 6.00, this)">In den Warenkorb</button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Dürüm Lamm</div>
+                        <div class="item-description">Döner im dünnen Fladenbrot gerollt mit Lammfleisch</div>
+                        <div class="item-price">€6.50</div>
+                                                <div class="customization-options">
+                            <div class="customization-title">🚫 Ohne...</div>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-herb-5">
+                                    <label for="remove-herb-5">Kräutersoße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-spicy-5">
+                                    <label for="'remove-spicy-5">Scharfe Soße</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-garlic-5">
+                                    <label for=", 'remove-garlic-5">Knoblauchsoße</label>
+                                </div>                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-salad-5">
+                                    <label for="remove-salad-5">Mischsalat</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-cucumber-5">
+                                    <label for="remove-cucumber-5">Gurken</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-tomato-5">
+                                    <label for="remove-tomato-5">Tomate</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="remove-onion-5">
+                                    <label for="remove-onion-5">Zwiebel</label>
+                                </div>
+                                <div class="checkbox-item"> 
+                                    <input type="checkbox" id="remove-meat-5">
+                                    <label for="remove-meat-5">Fleisch</label>
+                                </div>
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+                            <div class="extra-meat">
+                                <span>🥩 Extra Fleisch (+€0.50):</span>
+                                <div class="extra-meat-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                    <span class="extra-meat-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Dürüm Lamm', 6.50, this)">In den Warenkorb</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h2 class="category-title">🍟 Beilagen</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Pommes Frites</div>
+                        <div class="item-description">Knusprige Pommes Frites</div>
+                        <div class="item-price">€3.50</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Pommes Frites', 3.50, this)">In den Warenkorb</button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Fladenbrot</div>
+                        <div class="item-description">Frisches türkisches Fladenbrot</div>
+                        <div class="item-price">€2.00</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Fladenbrot', 2.00, this)">In den Warenkorb</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h2 class="category-title">🥤 Getränke</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Ayran (0,33l)</div>
+                        <div class="item-description">Traditionelles türkisches Joghurtgetränk</div>
+                        <div class="item-price">€2.50</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Ayran (0,33l)', 2.50, this)">In den Warenkorb</button>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Türkischer Tee</div>
+                        <div class="item-description">Heißer Schwarztee im Glas</div>
+                        <div class="item-price">€1.50</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart('Türkischer Tee', 1.50, this)">In den Warenkorb</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-form" id="order-form">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">📋 Bestelldaten</h3>
+            
+            <div class="form-group">
+                <label for="customer-name">Name *</label>
+                <input type="text" id="customer-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-phone">Telefonnummer *</label>
+                <input type="tel" id="customer-phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-address">Lieferadresse *</label>
+                <textarea id="customer-address" rows="3" required placeholder="Straße, Hausnummer, PLZ, Ort"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="delivery-option">Lieferung oder Abholung *</label>
+                <select id="delivery-option" style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1em;">
+                    <option value="delivery">Lieferung (Liefergebühr: €2.50)</option>
+                    <option value="pickup">Abholung</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="special-requests">Besondere Wünsche</label>
+                <textarea id="special-requests" rows="2" placeholder="Allergien, Extrawünsche, etc."></textarea>
+            </div>
+
+            <div class="payment-info">
+                <div class="payment-icon">💰</div>
+                <strong>Barzahlung bei Lieferung oder Abholung</strong><br>
+                <small>Bitte halten Sie das passende Geld bereit</small>
+            </div>
+
+            <button class="submit-order" onclick="submitOrder()">Bestellung abschicken</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = {};
+        let cartTotal = 0;
+
+        function changeQuantity(button, change) {
+            const quantityDisplay = button.parentElement.querySelector('.quantity-display');
+            let currentQuantity = parseInt(quantityDisplay.textContent);
+            currentQuantity = Math.max(0, currentQuantity + change);
+            quantityDisplay.textContent = currentQuantity;
+        }
+
+        function changeExtraMeat(button, change) {
+            const extraMeatDisplay = button.parentElement.querySelector('.extra-meat-display');
+            let currentExtra = parseInt(extraMeatDisplay.textContent);
+            currentExtra = Math.max(0, currentExtra + change);
+            extraMeatDisplay.textContent = currentExtra;
+        }
+
+        function getCustomizations(menuItem) {
+            const customizations = {
+                removeIngredients: [],
+                extraMeat: 0,
+                extraCost: 0
+            };
+
+            // Check removed ingredients
+            const checkboxes = menuItem.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.nextElementSibling.textContent;
+                customizations.removeIngredients.push(label);
+            });
+
+            // Check extra meat
+            const extraMeatDisplay = menuItem.querySelector('.extra-meat-display');
+            if (extraMeatDisplay) {
+                customizations.extraMeat = parseInt(extraMeatDisplay.textContent);
+                customizations.extraCost = customizations.extraMeat * 0.50;
+            }
+
+            return customizations;
+        }
+
+        function addToCart(itemName, price, button) {
+            const menuItem = button.closest('.menu-item');
+            const quantityDisplay = menuItem.querySelector('.quantity-display');
+            const quantity = parseInt(quantityDisplay.textContent);
+            
+            if (quantity === 0) {
+                alert('Bitte wählen Sie eine Menge aus!');
+                return;
+            }
+
+            const customizations = getCustomizations(menuItem);
+            const totalItemPrice = price + customizations.extraCost;
+            
+            // Create unique key for cart item including customizations
+            let itemKey = itemName;
+            if (customizations.removeIngredients.length > 0) {
+                itemKey += ' (ohne: ' + customizations.removeIngredients.join(', ') + ')';
+            }
+            if (customizations.extraMeat > 0) {
+                itemKey += ' (+' + customizations.extraMeat + 'x Extra Fleisch)';
+            }
+
+            if (cart[itemKey]) {
+                cart[itemKey].quantity += quantity;
+            } else {
+                cart[itemKey] = {
+                    basePrice: price,
+                    totalPrice: totalItemPrice,
+                    quantity: quantity,
+                    customizations: customizations
+                };
+            }
+
+            // Reset displays
+            quantityDisplay.textContent = '0';
+            const extraMeatDisplay = menuItem.querySelector('.extra-meat-display');
+            if (extraMeatDisplay) {
+                extraMeatDisplay.textContent = '0';
+            }
+            
+            // Reset checkboxes
+            const checkboxes = menuItem.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            if (Object.keys(cart).length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Ihr Warenkorb ist leer</p>';
+                cartTotal.style.display = 'none';
+                checkoutBtn.style.display = 'none';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            for (const [itemKey, item] of Object.entries(cart)) {
+                const itemTotal = item.totalPrice * item.quantity;
+                total += itemTotal;
+                
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${itemKey}</strong><br>
+                            <small>${item.quantity}x €${item.totalPrice.toFixed(2)}</small>
+                        </div>
+                        <div>
+                            <strong>€${itemTotal.toFixed(2)}</strong>
+                            <button onclick="removeFromCart('${itemKey.replace(/'/g, "\\\'")}')" style="margin-left: 10px; background: #e74c3c; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer;">×</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            cartItems.innerHTML = html;
+            cartTotal.innerHTML = `Gesamt: €${total.toFixed(2)}`;
+            cartTotal.style.display = 'block';
+            checkoutBtn.style.display = 'block';
+        }
+
+        function removeFromCart(itemKey) {
+            delete cart[itemKey];
+            updateCartDisplay();
+        }
+
+        function showOrderForm() {
+            if (Object.keys(cart).length === 0) {
+                alert('Ihr Warenkorb ist leer!');
+                return;
+            }
+            
+            document.getElementById('order-form').style.display = 'block';
+            document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            for (const [itemKey, item] of Object.entries(cart)) {
+                total += item.totalPrice * item.quantity;
+            }
+            
+            const deliveryOption = document.getElementById('delivery-option').value;
+            if (deliveryOption === 'delivery') {
+                total += 2.50; // Liefergebühr
+            }
+            
+            return total;
+        }
+        function onlyMeat(button) {
+            const container = button.closest('.menu-item');
+            const removeIds = ['remove-redcabbage', 'remove-whitecabbage', 'remove-salad', 'remove-cucumber', 'remove-tomato', 'remove-onion'];
+            removeIds.forEach(id => {
+                const checkbox = container.querySelector(`[id^="${id}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+
+function noSauce(button) {
+    const container = button.closest('.menu-item');
+    const removeIds = ['remove-spicy', 'remove-garlic', 'remove-herb'];
+    removeIds.forEach(id => {
+        const checkbox = container.querySelector(`[id^="${id}"]`);
+        if (checkbox) checkbox.checked = true;
+    });
+}
+function selectAll(button) {
+    const container = button.closest('.menu-item');
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(cb => cb.checked = false);
+}
+        function submitOrder() {
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+            const deliveryOption = document.getElementById('delivery-option').value;
+            const specialRequests = document.getElementById('special-requests').value.trim();
+            
+
+            if (!name || !phone || (deliveryOption === 'delivery' && !address)) {
+                alert('Bitte füllen Sie alle Pflichtfelder aus!');
+                return;
+            }
+
+            const total = calculateTotal();
+            let foodTotal = 0;
+            for (const [itemKey, item] of Object.entries(cart)) {
+                foodTotal += item.totalPrice * item.quantity;
+            }
+            if (deliveryOption === 'delivery' && foodTotal < 10) {
+                alert('Lieferung ist erst ab 10 € Bestellwert (ohne Liefergebühr) möglich.');
+                return;
+            }
+            let orderSummary = `🥙 NEUE BESTELLUNG - Istanbul Döner\n\n`;
+            orderSummary += `📞 Kunde: ${name}\n`;
+            orderSummary += `📱 Telefon: ${phone}\n`;
+            
+            if (deliveryOption === 'delivery') {
+                orderSummary += `🚚 Lieferung an: ${address}\n`;
+            } else {
+                orderSummary += `🏪 Abholung im Restaurant\n`;
+            }
+            
+            orderSummary += `\n📋 BESTELLUNG:\n`;
+            orderSummary += `${'-'.repeat(40)}\n`;
+            
+            for (const [itemKey, item] of Object.entries(cart)) {
+                const itemTotal = item.totalPrice * item.quantity;
+                orderSummary += `${item.quantity}x ${itemKey} - €${itemTotal.toFixed(2)}\n`;
+                
+                if (item.customizations.removeIngredients.length > 0) {
+                    orderSummary += `   → ohne: ${item.customizations.removeIngredients.join(', ')}\n`;
+                }
+                if (item.customizations.extraMeat > 0) {
+                    orderSummary += `   → +${item.customizations.extraMeat}x Extra Fleisch\n`;
+                }
+            }
+            
+            if (deliveryOption === 'delivery') {
+                orderSummary += `Liefergebühr - €2.50\n`;
+            }
+            
+            orderSummary += `${'-'.repeat(40)}\n`;
+            orderSummary += `💰 GESAMT: €${total.toFixed(2)} (Barzahlung)\n`;
+            
+            if (specialRequests) {
+                orderSummary += `\n📝 Besondere Wünsche: ${specialRequests}\n`;
+            }
+
+            // Hier würde normalerweise die Bestellung an das Restaurant gesendet werden
+            alert(`Vielen Dank für Ihre Bestellung!\n\nIhre Bestellung wurde erfolgreich aufgenommen.\nGesamtbetrag: €${total.toFixed(2)}\n\nWir werden uns in Kürze bei Ihnen melden.\n\nBitte halten Sie das passende Bargeld bereit.`);
+            
+            console.log('Bestellungsdetails:', orderSummary);
+            
+            // Warenkorb leeren und Formular zurücksetzen
+            cart = {};
+            updateCartDisplay();
+            document.getElementById('order-form').style.display = 'none';
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-phone').value = '';
+            document.getElementById('customer-address').value = '';
+            document.getElementById('special-requests').value = '';
+        }
+
+        // Event Listener für Lieferoptionen
+        document.getElementById('delivery-option').addEventListener('change', function() {
+            const addressField = document.getElementById('customer-address');
+            if (this.value === 'pickup') {
+                addressField.required = false;
+                addressField.placeholder = 'Nicht erforderlich bei Abholung';
+            } else {
+                addressField.required = true;
+                addressField.placeholder = 'Straße, Hausnummer, PLZ, Ort';
+            }
+        });
+    </script>
+</body>
+</html>
