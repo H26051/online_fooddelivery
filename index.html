@@ -10,10 +10,34 @@
             padding: 0;
             box-sizing: border-box;
         }
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  padding: 10px 40px 10px 12px;
+  font-size: 1em;
+  font-family: inherit;
+  color: #2c3e50;
+  cursor: pointer;
+  position: relative;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='7' viewBox='0 0 10 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23667eea' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  transition: border-color 0.3s ease;
+}
 
+select:focus {
+  outline: none;
+  border-color: #5a6fd8;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+}
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #c1e0b4/*linear-gradient(135deg, #667eea 0%, #764ba2 100%)*/;
             min-height: 100vh;
             color: #333;
         }
@@ -31,6 +55,7 @@
             padding: 30px;
             text-align: center;
             margin-bottom: 30px;
+            font-family: 'Bamboo', sans-serif;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
         }
 
@@ -38,7 +63,8 @@
             color: #2c3e50;
             font-size: 2.5em;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            
+            background: #3a8822/*linear-gradient(45deg, #667eea, #764ba2)*/;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -74,10 +100,10 @@ button:hover {
 
         .category-title {
             font-size: 1.8em;
-            color: #2c3e50;
+            color: #3a8822;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #3a8822;
         }
 
         .menu-items {
@@ -87,7 +113,7 @@ button:hover {
         }
 
         .menu-item {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            background: linear-gradient(135deg, #ecf3e8, #e9ecef);
             border-radius: 15px;
             padding: 20px;
             transition: all 0.3s ease;
@@ -97,7 +123,7 @@ button:hover {
         .menu-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
+            border-color: #3a8822;
         }
 
         .item-name {
@@ -132,7 +158,10 @@ button:hover {
             height: 35px;
             border: none;
             border-radius: 50%;
-            background: #667eea;
+            background: 
+#5eb13c
+
+;
             color: white;
             font-size: 1.2em;
             cursor: pointer;
@@ -140,7 +169,10 @@ button:hover {
         }
 
         .quantity-btn:hover {
-            background: #5a6fd8;
+            background: 
+#5eb13c
+
+;
             transform: scale(1.1);
         }
 
@@ -152,7 +184,7 @@ button:hover {
         }
 
         .add-to-cart {
-            background: linear-gradient(45deg, #28a745, #20c997);
+            background: #0a0b0a/*linear-gradient(45deg, #28a745, #20c997)*/;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -166,7 +198,8 @@ button:hover {
 
         .add-to-cart:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+            color:#565856;
+            box-shadow: 0 5px 15px rgb(164,164,164);
         }
 
         .cart {
@@ -319,29 +352,60 @@ button:hover {
             margin-bottom: 12px;
         }
 
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
+.checkbox-group .checkbox-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #667eea;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
 
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.9em;
-        }
+.checkbox-group .checkbox-item input[type="checkbox"]:checked {
+  background-color: #667eea;
+  border-color: #667eea;
+}
 
-        .checkbox-item input[type="checkbox"] {
-            margin: 0;
-        }
+.checkbox-group .checkbox-item input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 
+.checkbox-group .checkbox-item input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+.checkbox-group .checkbox-item label {
+  margin-left: 6px;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #2c3e50;
+}
         .extra-meat {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 10px;
+        }
+        .extra-cheese {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
         }
 
         .extra-meat-controls {
@@ -349,7 +413,11 @@ button:hover {
             align-items: center;
             gap: 8px;
         }
-
+        .extra-chees-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .extra-meat-btn {
             width: 25px;
             height: 25px;
@@ -432,7 +500,7 @@ button:hover {
 <body>
     <div class="container">
         <header>
-            <h1>🥙 Istanbul Döner</h1>
+            <h1>🥙 Bambus Bistro</h1>
             <p class="subtitle">Frische Döner-Spezialitäten - Online bestellen</p>
             <div class="payment-info">
                 <div class="payment-icon">💰</div>
@@ -455,14 +523,41 @@ button:hover {
 
         <div class="menu-section">
             <div class="menu-category">
-                <h2 class="category-title">🥙 Döner</h2>
+                <h2 class="category-title">🥙 Dönergerichte</h2>
                 <div class="menu-items">
                     <div class="menu-item">
                         <div class="item-name">Döner im Fladenbrot</div>
                         <div class="item-description">Frisches Hähnchen- oder Lammfleisch, Salat, Tomaten, Zwiebeln, Gurken</div>
                         <div class="item-price">€5.50</div>
-                            <div class="customization-options">
-                            <div class="customization-title">🚫 Ohne...</div>                        
+                        <div class="meat-selection">
+                            <h4>🍖Fleischsorte wählen:</h4>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-option" value="Hähnchen" onchange="handleMeatSelection(this)">
+                                    <label>Hähnchen</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-option" value="Hackfleischspieß" onchange="handleMeatSelection(this)">
+                                    <label>Hackfleischspieß</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-both" onchange="toggleBothMeat(this)">
+                                    <label>Beides</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+
+                            <details class="customization-options">
+                            <summary>Personalisieren</summary>                            
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+                            <div class="customization-title">🚫 Ohne...</div>                     
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="remove-herb-1">
@@ -492,14 +587,10 @@ button:hover {
                                     <input type="checkbox" id="remove-onion-1">
                                     <label for="remove-onion-1">Zwiebel</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-meat-1">
-                                    <label for="remove-meat-1">Fleisch</label>
-                                </div>
-                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
-                            <button onclick="noSauce(this)">Ohne Soße</button>
-                            <button type="button" onclick="selectAll(this)">Komplett</button>
-                        
+                            <div class="checkbox-item">
+                            <input type="checkbox" id="remove-meat-1" onchange="handleNoMeatToggle(this)">
+                            <label for="remove-meat-1">Fleisch</label>
+                            </div>                        
                             <div class="extra-meat">
                                 <span>🥩 Extra Fleisch (+€0.50):</span>
                                 <div class="extra-meat-controls">
@@ -509,21 +600,49 @@ button:hover {
                                 </div>
                             </div>
                         </div>
+                    </details>
+                    <button class="add-to-cart" onclick="addToCart('Döner im Fladenbrot', 5.50, this)">In den Warenkorb</button>
 
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Döner im Fladenbrot', 5.50, this)">In den Warenkorb</button>
                     </div>
 
                     <div class="menu-item">
-                        <div class="item-name">Döner Teller</div>
+                        <div class="item-name">Dönerteller</div>
                         <div class="item-description">Döner mit Reis oder Pommes, Salat und Soßen</div>
                         <div class="item-price">€8.50</div>
-                        
-                        <div class="customization-options">
+                        <div class="meat-selection">
+                            <label for="side-dish-1">🍖Fleischsorte wählen:</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-option" value="Hähnchen" onchange="handleMeatSelection(this)">
+                                    <label>Hähnchen</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-option" value="Hackfleischspieß" onchange="handleMeatSelection(this)">
+                                    <label>Hackfleischspieß</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-both" onchange="toggleBothMeat(this)">
+                                    <label>Beides</label>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                        <label for="side-dish-1">Beilage wählen:</label>
+                        <select class="side-dish">
+                            <option value="Fladenbrot">Fladenbrot</option>
+                            <option value="Reis">Reis</option>
+                            <option value="Nudeln">Nudeln</option>
+                            <option value="Pommes">Pommes</option>
+                            <option value="Ohne">Ohne Beilagen</option>
+                        </select>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                        <details class="customization-options">
+                            <summary>Personalisieren</summary>
                             <div class="customization-title">🚫 Ohne...</div>
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
@@ -554,10 +673,10 @@ button:hover {
                                     <input type="checkbox" id="remove-onion-2">
                                     <label for="remove-onion-2">Zwiebel</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-meat-2">
-                                    <label for="remove-meat-2">Fleisch</label>
-                                </div>
+                            <div class="checkbox-item">
+                            <input type="checkbox" id="remove-meat-2" onchange="handleNoMeatToggle(this)">
+                            <label for="remove-meat-2">Fleisch</label>
+                            </div>                        
                             <button onclick="onlyMeat(this)">Nur Fleisch</button>
                             <button onclick="noSauce(this)">Ohne Soße</button>
                             <button type="button" onclick="selectAll(this)">Komplett</button>
@@ -567,24 +686,60 @@ button:hover {
                                     <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
                                     <span class="extra-meat-display">0</span>
                                     <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                                
+                                </div>
+                            </div>
+                            <div class="extra-cheese">
+                                <span>🧀 Extra Schafskäse (+€1.00):</span>
+                                <div class="extra-cheese-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, -1)">-</button>
+                                    <span class="extra-cheese-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, 1)">+</button>
+                                </div>
+                            </div>                            
+                        </div>                        
+                    </details>
+
+                    <button class="add-to-cart" onclick="addToCart('Döner Teller', 8.50, this)">In den Warenkorb</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Dönerbox mit Salat</div>
+                        <div class="item-description">Dönerfleisch mit Salat in der praktischen Box</div>
+                        <div class="form-group">
+                        <label for="box-type">Dönerbox wählen:</label>                        
+                        </div>                        
+                        <div class="item-price">€5.50</div> 
+                        <div class="meat-selection">
+                            <h4>🍖Fleischsorte wählen:</h4>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-option" value="Hähnchen" onchange="handleMeatSelection(this)">
+                                    <label>Hähnchen</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-option" value="Hackfleischspieß" onchange="handleMeatSelection(this)">
+                                    <label>Hackfleischspieß</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" class="meat-both" onchange="toggleBothMeat(this)">
+                                    <label>Beides</label>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="quantity-controls">
                             <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
                             <span class="quantity-display">0</span>
                             <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
                         </div>
-                        <button class="add-to-cart" onclick="addToCart('Döner Teller', 8.50, this)">In den Warenkorb</button>
-                    </div>
 
-                    <div class="menu-item">
-                        <div class="item-name">Döner Box</div>
-                        <div class="item-description">Döner mit Pommes in der praktischen Box</div>
-                        <div class="item-price">€7.00</div>
-                        <div class="customization-options">
+                        <details class="customization-options">
+                            <summary>Personalisieren</summary>
+                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+
                             <div class="customization-title">🚫 Ohne...</div>                        
+                            <div class="checkbox-group box-salad-options"></div>
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="remove-herb-3">
@@ -614,13 +769,6 @@ button:hover {
                                     <input type="checkbox" id="remove-onion-3">
                                     <label for="remove-onion-3">Zwiebel</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-meat-3">
-                                    <label for="remove-meat-3">Fleisch</label>
-                                </div>
-                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
-                            <button onclick="noSauce(this)">Ohne Soße</button>
-                            <button type="button" onclick="selectAll(this)">Komplett</button>
                             <div class="extra-meat">
                                 <span>🥩 Extra Fleisch (+€0.50):</span>
                                 <div class="extra-meat-controls">
@@ -629,64 +777,69 @@ button:hover {
                                     <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
                                 </div>
                             </div>
+                            <div class="extra-cheese">
+                                <span>🧀 Extra Schafskäse (+€1.00):</span>
+                                <div class="extra-cheese-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, -1)">-</button>
+                                    <span class="extra-cheese-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, 1)">+</button>
+                                </div>
+                            </div>  
                         </div>
-
-                        
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Döner Box', 7.00, this)">In den Warenkorb</button>
+                        </details>
+                        <button class="add-to-cart" onclick="addToCart('Dönerbox mit Salat', 5.50, this)">In den Warenkorb</button>
+                                                
                     </div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h2 class="category-title">🌯 Dürüm</h2>
-                <div class="menu-items">
                     <div class="menu-item">
-                        <div class="item-name">Dürüm Hähnchen</div>
-                        <div class="item-description">Döner im dünnen Fladenbrot gerollt mit Hähnchenfleisch</div>
+                        <div class="item-name">Dönerbox mit Pommes</div>
+                        <div class="item-description">Dönerfleisch mit Pommes in der praktischen Box</div>
+                        <div class="form-group">
+                        <label for="box-type">Dönerbox wählen:</label>                        
+                        </div>                        
                         <div class="item-price">€6.00</div>
-                        <div class="customization-options">
+                        <div class="meat-selection">
+                            <h4>🍖Fleischsorte wählen:</h4>
+                            <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="meat-option" value="Hähnchen" onchange="handleMeatSelection(this)">
+                                <label>Hähnchen</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="meat-option" value="Hackfleischspieß" onchange="handleMeatSelection(this)">
+                                <label>Hackfleischspieß</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="meat-both" onchange="toggleBothMeat(this)">
+                                <label>Beides</label>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity-display">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+
+                        <details class="customization-options">
+                            <summary>Personalisieren</summary>
+                            <button onclick="noSauce(this)">Ohne Soße</button>
+                            <button type="button" onclick="selectAll(this)">Komplett</button>
+
                             <div class="customization-title">🚫 Ohne...</div>                        
+                            <div class="checkbox-group box-salad-options"></div>
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-herb-4">
-                                    <label for="remove-herb-4">Kräutersoße</label>
+                                    <input type="checkbox" id="remove-herb-3">
+                                    <label for="remove-herb-3">Kräutersoße</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-spicy-4">
-                                    <label for="'remove-spicy'-4">Scharfe Soße</label>
+                                    <input type="checkbox" id="remove-spicy-3">
+                                    <label for="'remove-spicy'-3">Scharfe Soße</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-garlic-4">
-                                    <label for=", 'remove-garlic-4">Knoblauchsoße</label>
+                                    <input type="checkbox" id="remove-garlic-3">
+                                    <label for=", 'remove-garlic-3">Knoblauchsoße</label>
                                 </div>                                
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-salad-4">
-                                    <label for="remove-salad-4">Mischsalat</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-cucumber-4">
-                                    <label for="remove-cucumber-4">Gurken</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-tomato-4">
-                                    <label for="remove-tomato-4">Tomate</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-onion-4">
-                                    <label for="remove-onion-4">Zwiebel</label>
-                                </div>
-                                <div class="checkbox-item"> 
-                                    <input type="checkbox" id="remove-meat-4">
-                                    <label for="remove-meat-4">Fleisch</label>
-                                </div>
-                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
-                            <button onclick="noSauce(this)">Ohne Soße</button>
-                            <button type="button" onclick="selectAll(this)">Komplett</button>
                             <div class="extra-meat">
                                 <span>🥩 Extra Fleisch (+€0.50):</span>
                                 <div class="extra-meat-controls">
@@ -695,179 +848,370 @@ button:hover {
                                     <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
                                 </div>
                             </div>
+                                                        <div class="extra-cheese">
+                                <span>🧀 Extra Schafskäse (+€1.00):</span>
+                                <div class="extra-cheese-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, -1)">-</button>
+                                    <span class="extra-cheese-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, 1)">+</button>
+                                </div>
+                            </div>  
                         </div>
-
-                        
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Dürüm Hähnchen', 6.00, this)">In den Warenkorb</button>
+                        </details>
+                        <button class="add-to-cart" onclick="addToCart('Döner Box', 7.00, this)">In den Warenkorb</button>
+                                                
                     </div>
+                </div>
+            </div>
 
-                    <div class="menu-item">
-                        <div class="item-name">Dürüm Lamm</div>
-                        <div class="item-description">Döner im dünnen Fladenbrot gerollt mit Lammfleisch</div>
-                        <div class="item-price">€6.50</div>
-                                                <div class="customization-options">
-                            <div class="customization-title">🚫 Ohne...</div>
-                            <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-herb-5">
-                                    <label for="remove-herb-5">Kräutersoße</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-spicy-5">
-                                    <label for="'remove-spicy-5">Scharfe Soße</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-garlic-5">
-                                    <label for=", 'remove-garlic-5">Knoblauchsoße</label>
-                                </div>                                
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-salad-5">
-                                    <label for="remove-salad-5">Mischsalat</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-cucumber-5">
-                                    <label for="remove-cucumber-5">Gurken</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-tomato-5">
-                                    <label for="remove-tomato-5">Tomate</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="remove-onion-5">
-                                    <label for="remove-onion-5">Zwiebel</label>
-                                </div>
-                                <div class="checkbox-item"> 
-                                    <input type="checkbox" id="remove-meat-5">
-                                    <label for="remove-meat-5">Fleisch</label>
-                                </div>
-                            <button onclick="onlyMeat(this)">Nur Fleisch</button>
-                            <button onclick="noSauce(this)">Ohne Soße</button>
-                            <button type="button" onclick="selectAll(this)">Komplett</button>
-                            <div class="extra-meat">
-                                <span>🥩 Extra Fleisch (+€0.50):</span>
-                                <div class="extra-meat-controls">
-                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
-                                    <span class="extra-meat-display">0</span>
-                                    <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
-                                </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-name">Dürüm</div>
+                    <div class="item-description">Döner im dünnen Fladenbrot gerollt mit Hähnchenfleisch</div>
+                    <div class="item-price">€6.00</div>
+                    <div class="meat-selection">
+                        <h4>🍖Fleischsorte wählen:</h4>
+                        <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" class="meat-option" value="Hähnchen" onchange="handleMeatSelection(this)">
+                            <label>Hähnchen</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" class="meat-option" value="Hackfleischspieß" onchange="handleMeatSelection(this)">
+                            <label>Hackfleischspieß</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" class="meat-both" onchange="toggleBothMeat(this)">
+                            <label>Beides</label>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    <details class="customization-options">
+                        <summary>Personalisieren</summary>
+                                                <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                        <button onclick="noSauce(this)">Ohne Soße</button>
+                        <button type="button" onclick="selectAll(this)">Komplett</button>
+                            
+                        <div class="customization-title">🚫 Ohne...</div>                        
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-herb-4">
+                                <label for="remove-herb-4">Kräutersoße</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-spicy-4">
+                                <label for="'remove-spicy'-4">Scharfe Soße</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-garlic-4">
+                                <label for=", 'remove-garlic-4">Knoblauchsoße</label>
+                            </div>                                
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-salad-4">
+                                <label for="remove-salad-4">Mischsalat</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-cucumber-4">
+                                <label for="remove-cucumber-4">Gurken</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-tomato-4">
+                                <label for="remove-tomato-4">Tomate</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-onion-4">
+                                <label for="remove-onion-4">Zwiebel</label>
+                            </div>
+                            <div class="checkbox-item">
+                            <input type="checkbox" id="remove-meat-4" onchange="handleNoMeatToggle(this)">
+                            <label for="remove-meat-4">Fleisch</label>
+                            </div>                        
+                        <div class="extra-meat">
+                            <span>🥩 Extra Fleisch (+€0.50):</span>
+                            <div class="extra-meat-controls">
+                                <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                <span class="extra-meat-display">0</span>
+                                <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
                             </div>
                         </div>
-
-                        
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Dürüm Lamm', 6.50, this)">In den Warenkorb</button>
+                        <div class="extra-cheese">
+                                <span>🧀 Extra Schafskäse (+€1.00):</span>
+                                <div class="extra-cheese-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, -1)">-</button>
+                                    <span class="extra-cheese-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, 1)">+</button>
+                                </div>
+                            </div>  
                     </div>
+
+                    
+
+                    </details>
+                    <button class="add-to-cart" onclick="addToCart('Dürüm Hähnchen', 6.00, this)">In den Warenkorb</button>
                 </div>
-            </div>
-
-            <div class="menu-category">
-                <h2 class="category-title">🍟 Beilagen</h2>
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <div class="item-name">Pommes Frites</div>
-                        <div class="item-description">Knusprige Pommes Frites</div>
-                        <div class="item-price">€3.50</div>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Pommes Frites', 3.50, this)">In den Warenkorb</button>
-                    </div>
-
-                    <div class="menu-item">
-                        <div class="item-name">Fladenbrot</div>
-                        <div class="item-description">Frisches türkisches Fladenbrot</div>
-                        <div class="item-price">€2.00</div>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Fladenbrot', 2.00, this)">In den Warenkorb</button>
-                    </div>
                 </div>
-            </div>
 
-            <div class="menu-category">
-                <h2 class="category-title">🥤 Getränke</h2>
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <div class="item-name">Ayran (0,33l)</div>
-                        <div class="item-description">Traditionelles türkisches Joghurtgetränk</div>
-                        <div class="item-price">€2.50</div>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Ayran (0,33l)', 2.50, this)">In den Warenkorb</button>
+                <div class="menu-item">
+                    <div class="item-name">Dürüm Lamm</div>
+                    <div class="item-description">Döner im dünnen Fladenbrot gerollt mit Lammfleisch</div>
+                    <div class="item-price">€6.50</div>
+                    <details class="customization-options">
+                        <summary>Personalisieren</summary>
+                        <div class="customization-title">🚫 Ohne...</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-herb-5">
+                                <label for="remove-herb-5">Kräutersoße</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-spicy-5">
+                                <label for="'remove-spicy-5">Scharfe Soße</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-garlic-5">
+                                <label for=", 'remove-garlic-5">Knoblauchsoße</label>
+                            </div>                                
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-salad-5">
+                                <label for="remove-salad-5">Mischsalat</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-cucumber-5">
+                                <label for="remove-cucumber-5">Gurken</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-tomato-5">
+                                <label for="remove-tomato-5">Tomate</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="remove-onion-5">
+                                <label for="remove-onion-5">Zwiebel</label>
+                            </div>
+                            <div class="checkbox-item">
+                            <input type="checkbox" id="remove-meat-5" onchange="handleNoMeatToggle(this)">
+                            <label for="remove-meat-5">Fleisch</label>
+                            </div>                        
+                        <button onclick="onlyMeat(this)">Nur Fleisch</button>
+                        <button onclick="noSauce(this)">Ohne Soße</button>
+                        <button type="button" onclick="selectAll(this)">Komplett</button>
+                        <div class="extra-meat">
+                            <span>🥩 Extra Fleisch (+€0.50):</span>
+                            <div class="extra-meat-controls">
+                                <button class="extra-meat-btn" onclick="changeExtraMeat(this, -1)">-</button>
+                                <span class="extra-meat-display">0</span>
+                                <button class="extra-meat-btn" onclick="changeExtraMeat(this, 1)">+</button>
+                            </div>
                     </div>
-
-                    <div class="menu-item">
-                        <div class="item-name">Türkischer Tee</div>
-                        <div class="item-description">Heißer Schwarztee im Glas</div>
-                        <div class="item-price">€1.50</div>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
-                            <span class="quantity-display">0</span>
-                            <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
-                        <button class="add-to-cart" onclick="addToCart('Türkischer Tee', 1.50, this)">In den Warenkorb</button>
+                                                <div class="extra-cheese">
+                                <span>🧀 Extra Schafskäse (+€1.00):</span>
+                                <div class="extra-cheese-controls">
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, -1)">-</button>
+                                    <span class="extra-cheese-display">0</span>
+                                    <button class="extra-meat-btn" onclick="changeExtraCheese(this, 1)">+</button>
+                                </div>
+                            </div>  
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
                     </div>
+                </details>
+                    <button class="add-to-cart" onclick="addToCart('Dürüm Lamm', 6.50, this)">In den Warenkorb</button>
                 </div>
             </div>
         </div>
 
-        <div class="order-form" id="order-form">
-            <h3 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">📋 Bestelldaten</h3>
-            
-            <div class="form-group">
-                <label for="customer-name">Name *</label>
-                <input type="text" id="customer-name" required>
+        <div class="menu-section">
+        <div class="menu-category">
+            <h2 class="category-title">🍟 Beilagen</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-name">Pommes Frites</div>
+                    <div class="item-description">Knusprige Pommes Frites</div>
+                    <div class="item-price">€2.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Pommes Frites', 2.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Reis</div>
+                    <div class="item-description">Gekochte Portion Reis</div>
+                    <div class="item-price">€2.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Reis', 2.00, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Fladenbrot</div>
+                    <div class="item-description">Frisches türkisches Fladenbrot</div>
+                    <div class="item-price">€2.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Fladenbrot', 2.00, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Gebackene Hähnchenbrust</div>
+                    <div class="item-description">Panierte Hähnchenbrust</div>
+                    <div class="item-price">€3.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Gebackene Hähnchenbrust', 3.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Gebackene Entenbrust</div>
+                    <div class="item-description">Panierte Entenbrust</div>
+                    <div class="item-price">€4.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Gebackene Entenbrust', 4.50, this)">In den Warenkorb</button>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="customer-phone">Telefonnummer *</label>
-                <input type="tel" id="customer-phone" required>
-            </div>
-
-            <div class="form-group">
-                <label for="customer-address">Lieferadresse *</label>
-                <textarea id="customer-address" rows="3" required placeholder="Straße, Hausnummer, PLZ, Ort"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="delivery-option">Lieferung oder Abholung *</label>
-                <select id="delivery-option" style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1em;">
-                    <option value="delivery">Lieferung (Liefergebühr: €2.50)</option>
-                    <option value="pickup">Abholung</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="special-requests">Besondere Wünsche</label>
-                <textarea id="special-requests" rows="2" placeholder="Allergien, Extrawünsche, etc."></textarea>
-            </div>
-
-            <div class="payment-info">
-                <div class="payment-icon">💰</div>
-                <strong>Barzahlung bei Lieferung oder Abholung</strong><br>
-                <small>Bitte halten Sie das passende Geld bereit</small>
-            </div>
-
-            <button class="submit-order" onclick="submitOrder()">Bestellung abschicken</button>
         </div>
+        </div>
+        <div class="menu-section">
+        <div class="menu-category">
+            <h2 class="category-title">🥤 Getränke</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-name">Coca Cola (0,33l)</div>
+                    <div class="item-description">Coca Cola Dose</div>
+                    <div class="item-price">€1.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Coca Cola (0,33l)', 1.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Coca Cola (1l)</div>
+                    <div class="item-description">Coca Cola Dose</div>
+                    <div class="item-price">€2.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Coca Cola (1l)', 2.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Fanta (0,33l)</div>
+                    <div class="item-description">Fanta Dose</div>
+                    <div class="item-price">€1.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Fanta (0,33l)', 1.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Fanta (1l)</div>
+                    <div class="item-description">Coca Cola Flasche</div>
+                    <div class="item-price">€2.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Fanta (1l)', 2.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Sprite (0,33l)</div>
+                    <div class="item-description">Sprite Dose</div>
+                    <div class="item-price">€1.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Sprite (0,33l)', 1.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Sprite (1l)</div>
+                    <div class="item-description">Sprite Flasche</div>
+                    <div class="item-price">€2.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Sprite (1l)', 2.50, this)">In den Warenkorb</button>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cafe(0,2l)</div>
+                    <div class="item-description">Cafe</div>
+                    <div class="item-price">€1.50</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity-display">0</span>
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Cafe(0,2l)', 1.50, this)">In den Warenkorb</button>
+                </div>
+            </div>
+        </div>
+</div>
+    <div class="order-form" id="order-form">
+        <h3 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">📋 Bestelldaten</h3>
+        
+        <div class="form-group">
+            <label for="customer-name">Name *</label>
+            <input type="text" id="customer-name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customer-phone">Telefonnummer *</label>
+            <input type="tel" id="customer-phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customer-address">Lieferadresse *</label>
+            <textarea id="customer-address" rows="3" required placeholder="Straße, Hausnummer, PLZ, Ort"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="delivery-option">Lieferung oder Abholung *</label>
+            <select id="delivery-option" style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1em;">
+                <option value="delivery">Lieferung (Liefergebühr: €2.50)</option>
+                <option value="pickup">Abholung</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="special-requests">Besondere Wünsche</label>
+            <textarea id="special-requests" rows="2" placeholder="Allergien, Extrawünsche, etc."></textarea>
+        </div>
+
+        <div class="payment-info">
+            <div class="payment-icon">💰</div>
+            <strong>Barzahlung bei Lieferung oder Abholung</strong><br>
+            <small>Bitte halten Sie das passende Geld bereit</small>
+        </div>
+
+        <button class="submit-order" onclick="submitOrder()">Bestellung abschicken</button>
     </div>
+</div>
 
     <script>
         let cart = {};
@@ -883,16 +1227,23 @@ button:hover {
         function changeExtraMeat(button, change) {
             const extraMeatDisplay = button.parentElement.querySelector('.extra-meat-display');
             let currentExtra = parseInt(extraMeatDisplay.textContent);
-            currentExtra = Math.max(0, currentExtra + change);
+            currentExtra = Math.max(0, Math.min(10, currentExtra + change)); // Begrenzung auf 5
             extraMeatDisplay.textContent = currentExtra;
         }
 
         function getCustomizations(menuItem) {
             const customizations = {
+                sideDish: "",
                 removeIngredients: [],
                 extraMeat: 0,
-                extraCost: 0
+                extraCheese: 0,
+                extraCost: 0,
+                meat: []
             };
+            const sideDishSelect = menuItem.querySelector('.side-dish');
+            if (sideDishSelect) {
+                customizations.sideDish = sideDishSelect.value;
+            }
 
             // Check removed ingredients
             const checkboxes = menuItem.querySelectorAll('input[type="checkbox"]:checked');
@@ -900,6 +1251,13 @@ button:hover {
                 const label = checkbox.nextElementSibling.textContent;
                 customizations.removeIngredients.push(label);
             });
+            customizations.meat = [];
+const meatCheckboxes = menuItem.querySelectorAll('.meat-option');
+meatCheckboxes.forEach(box => {
+    if (box.checked) {
+        customizations.meat.push(box.value);
+    }
+});
 
             // Check extra meat
             const extraMeatDisplay = menuItem.querySelector('.extra-meat-display');
@@ -907,10 +1265,101 @@ button:hover {
                 customizations.extraMeat = parseInt(extraMeatDisplay.textContent);
                 customizations.extraCost = customizations.extraMeat * 0.50;
             }
+            const extraCheeseDisplay = menuItem.querySelector('.extra-cheese-display');
+            if (extraCheeseDisplay) {
+                const cheeseCount = parseInt(extraCheeseDisplay.textContent);
+                customizations.extraCheese = isNaN(cheeseCount) ? 0 : cheeseCount;
+                customizations.extraCost += customizations.extraCheese * 1.00;
+}
 
             return customizations;
         }
+function changeExtraCheese(button, change) {
+    const display = button.parentElement.querySelector('.extra-cheese-display');
+    let current = parseInt(display.textContent);
+    current = Math.max(0, Math.min(5, current + change)); // Begrenzung auf 0–5
+    display.textContent = current;
+}
+function toggleBothMeat(checkbox) {
+    const container = checkbox.closest('.menu-item');
+    const meatOptions = container.querySelectorAll('.meat-option');
+    const noMeatCheckbox = container.querySelector('input[id^="remove-meat"]');
 
+    meatOptions.forEach(opt => {
+        opt.checked = checkbox.checked;
+    });
+
+    // Wenn Beides aktiviert wird → „Ohne Fleisch“ abwählen
+    if (checkbox.checked && noMeatCheckbox) {
+        noMeatCheckbox.checked = false;
+    }
+}
+function handleNoMeatToggle(checkbox) {
+    const container = checkbox.closest('.menu-item');
+    const meatOptions = container.querySelectorAll('.meat-option');
+    const bothMeatCheckbox = container.querySelector('.meat-both');
+
+    if (checkbox.checked) {
+        meatOptions.forEach(opt => opt.checked = false);
+        if (bothMeatCheckbox) bothMeatCheckbox.checked = false;
+    }
+}
+function updateDrinkPrice(select) {
+    const size = select.value;
+    const priceElement = select.closest('.menu-item').querySelector('.item-price');
+    
+    if (size === "0.33") {
+        priceElement.textContent = "€2.50";
+        select.setAttribute("data-price", "2.50");
+    } else if (size === "1.00") {
+        priceElement.textContent = "€4.50";
+        select.setAttribute("data-price", "4.50");
+    }
+}
+function updateDönerboxOptions(select) {
+    const menuItem = select.closest('.menu-item');
+    const priceDisplay = menuItem.querySelector('.item-price');
+    const selectedOption = select.options[select.selectedIndex];
+
+    // Preis auslesen
+    const price = parseFloat(selectedOption.getAttribute('data-price'));
+    priceDisplay.textContent = '€' + price.toFixed(2);
+    select.setAttribute('data-price', price);
+
+    // Checkbox-Gruppen ein-/ausblenden
+    const saladGroup = menuItem.querySelector('.box-salad-options');
+    const pommesGroup = menuItem.querySelector('.box-pommes-options');
+
+    if (select.value === "salad") {
+        saladGroup.style.display = 'flex';
+        pommesGroup.style.display = 'none';
+    } else {
+        saladGroup.style.display = 'none';
+        pommesGroup.style.display = 'flex';
+    }
+}
+function handleMeatSelection(checkbox) {
+    const container = checkbox.closest('.menu-item');
+
+    // 1. "Ohne Fleisch" abwählen
+    const noMeatCheckbox = container.querySelector('input[id^="remove-meat"]');
+    if (noMeatCheckbox) {
+        noMeatCheckbox.checked = false;
+    }
+
+    // 2. Prüfen, ob beide Fleischsorten ausgewählt wurden
+    const meatCheckboxes = container.querySelectorAll('.meat-option');
+    const bothCheckbox = container.querySelector('.meat-both');
+
+    let selected = 0;
+    meatCheckboxes.forEach(cb => {
+        if (cb.checked) selected++;
+    });
+
+    if (bothCheckbox) {
+        bothCheckbox.checked = (selected === meatCheckboxes.length);
+    }
+}
         function addToCart(itemName, price, button) {
             const menuItem = button.closest('.menu-item');
             const quantityDisplay = menuItem.querySelector('.quantity-display');
@@ -920,17 +1369,37 @@ button:hover {
                 alert('Bitte wählen Sie eine Menge aus!');
                 return;
             }
+            let sizePrice = price;
+            const boxTypeSelector = menuItem.querySelector('.box-type');
+            if (boxTypeSelector) {
+                sizePrice = parseFloat(boxTypeSelector.getAttribute('data-price')) || price;
+            }
+            if (boxTypeSelector) {
+                const label = boxTypeSelector.options[boxTypeSelector.selectedIndex].text;
+                itemKey += ` (${label})`;
+            }
 
             const customizations = getCustomizations(menuItem);
             const totalItemPrice = price + customizations.extraCost;
             
             // Create unique key for cart item including customizations
+            
             let itemKey = itemName;
+            if (customizations.meat.length > 0) {
+                itemKey += ' [' + customizations.meat.join(' & ') + ']';
+            }
+
             if (customizations.removeIngredients.length > 0) {
                 itemKey += ' (ohne: ' + customizations.removeIngredients.join(', ') + ')';
             }
             if (customizations.extraMeat > 0) {
                 itemKey += ' (+' + customizations.extraMeat + 'x Extra Fleisch)';
+            }
+            if (customizations.extraCheese > 0) {
+                itemKey += ' (+' + customizations.extraCheese + 'x Extra Schafskäse)';
+            }
+            if (customizations.sideDish) {
+                itemKey += ' (mit ' + customizations.sideDish + ')';
             }
 
             if (cart[itemKey]) {
@@ -1065,6 +1534,15 @@ function selectAll(button) {
             for (const [itemKey, item] of Object.entries(cart)) {
                 foodTotal += item.totalPrice * item.quantity;
             }
+            if (item.customizations.extraCheese > 0) {
+                orderSummary += `   → +${item.customizations.extraCheese}x Extra Schafskäse\n`;
+            }
+            if (item.customizations.meat.length > 0) {
+    orderSummary += `   → Fleisch: ${item.customizations.meat.join(' & ')}\n`;
+}
+            if (item.customizations.sideDish) {
+                orderSummary += `   → Beilage: ${item.customizations.sideDish}\n`;
+            }
             if (deliveryOption === 'delivery' && foodTotal < 10) {
                 alert('Lieferung ist erst ab 10 € Bestellwert (ohne Liefergebühr) möglich.');
                 return;
@@ -1107,8 +1585,7 @@ function selectAll(button) {
 
             // Hier würde normalerweise die Bestellung an das Restaurant gesendet werden
             alert(`Vielen Dank für Ihre Bestellung!\n\nIhre Bestellung wurde erfolgreich aufgenommen.\nGesamtbetrag: €${total.toFixed(2)}\n\nWir werden uns in Kürze bei Ihnen melden.\n\nBitte halten Sie das passende Bargeld bereit.`);
-            
-            console.log('Bestellungsdetails:', orderSummary);
+            alert(`${orderSummary}`);
             
             // Warenkorb leeren und Formular zurücksetzen
             cart = {};
